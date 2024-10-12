@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import '../styles/AddCompanyForm.css';
 
-const AddCompanyForm = ({ addCompany }) => {
+const AddCompanyForm = ({ addCompany, setLoading }) => {
   const [company, setCompany] = useState({
     name: '',
     email: '',
     contact: '',
     address: '',
   });
+
 
   const handleChange = (e) => {
     setCompany({
@@ -18,13 +19,27 @@ const AddCompanyForm = ({ addCompany }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addCompany(company);
-    setCompany({ name: '', email: '', contact: '', address: '' });
+
+ 
+    setLoading(true);
+
+    //Loader of 2seconds
+    setTimeout(() => {
+      addCompany(company); 
+      setCompany({ name: '', email: '', contact: '', address: '' });
+      setLoading(false); 
+      document.getElementById('popup-form').style.display = 'none'; 
+    }, 2000); 
   };
 
   return (
     <div className="add-company-form">
-      <button className="add-btn" onClick={() => document.getElementById('popup-form').style.display = 'block'}>Add Company</button>
+      <button
+        className="add-btn"
+        onClick={() => document.getElementById('popup-form').style.display = 'block'}
+      >
+        Add Company
+      </button>
 
       <div id="popup-form" className="popup">
         <form onSubmit={handleSubmit}>
@@ -41,7 +56,9 @@ const AddCompanyForm = ({ addCompany }) => {
           <input type="text" name="address" value={company.address} onChange={handleChange} required />
 
           <button type="submit">Submit</button>
-          <button type="button" onClick={() => document.getElementById('popup-form').style.display = 'none'}>Close</button>
+          <button type="button" onClick={() => document.getElementById('popup-form').style.display = 'none'}>
+            Close
+          </button>
         </form>
       </div>
     </div>

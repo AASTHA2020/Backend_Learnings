@@ -4,7 +4,10 @@ import '../styles/Header.css';
 const Header = () => {
   return (
     <header className="header">
-      <div className="logo">Logo</div>
+      <div className="logo">
+        {/* Use the correct path for the image in public folder */}
+        <img src="/logo.png" alt="Logo" />
+      </div>
       <nav>
         <ul>
           <li><a href="#">Home</a></li>

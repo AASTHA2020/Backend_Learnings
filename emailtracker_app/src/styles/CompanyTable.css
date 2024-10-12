@@ -1,13 +1,44 @@
+/* Remove default focus outlines on input fields */
+.company-table input {
+  border: none;
+  outline: none; /* This removes the focus outline */
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  background-color: transparent; /* So it blends into the table */
+  font-size: 14px;
+  color: #333;
+}
+
+/* Add a subtle border for inputs when editing */
+.company-table input:focus {
+  border-bottom: 1px solid #ccc; /* Only show a bottom border on focus */
+  background-color: #f9f9f9; /* Slight background change to indicate focus */
+}
+
+/* Styling the table */
 .company-table table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .company-table th, td {
-    padding: 10px;
-    border: 1px solid #ccc;
-    text-align: center;
-  }
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.company-table th, .company-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.company-table th {
+  background-color: #f1f1f1;
+}
+
+.company-table td {
+  background-color: #fff;
+}
+
+
+
   
   .pagination {
     display: flex;
