@@ -1,16 +1,13 @@
 const mongoose = require('mongoose');
-const dbgr = require('debug')('development: mongoose');
 
+// Check if a connection already exists
+if (!mongoose.connection.readyState) {
+    mongoose.connect(process.env.MONGODB_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .then(() => console.log('Database connected successfully!'))
+    .catch(err => console.error('Database connection error:', err));
+}
 
-mongoose.connect('mongodb://127.0.0.1:27017/scratch')
-.then(function(){
-    dbgr("connected to database");
-    console.log('Connected to database');
-
-})
-.catch(function(err) {
-    dbgr("error connecting to database");
-    console.log(err);
-});
-
-module.exports = mongoose.connection;
+module.exports = mongoose;
